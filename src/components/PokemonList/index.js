@@ -4,7 +4,7 @@ import PokemonCard from './PokemonCard';
 
 const PokemonList = () => {
     const pokemons = Array(20).fill('');
-    console.log("🚀 ~ file: index.js ~ line 6 ~ PokemonList ~ pokemons", pokemons)
+    //console.log("🚀 ~ file: index.js ~ line 6 ~ PokemonList ~ pokemons", pokemons)
 
     return (
         <Grid className='PokemonList'>
