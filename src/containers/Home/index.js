@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Searcher from '../../components/Searcher';
 import PokemonList from '../../components/PokemonList';
 import { getPokemons } from '../../api/getPokemons';
-import { setPokemonsWithDetails, setError } from '../../actions';
+import { setPokemons, setError, fetchPokemons } from '../../actions';
 import './styles.css';
 
 function Home() {
@@ -11,13 +11,7 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getPokemons()
-      .then((res) => {
-        dispatch(setPokemonsWithDetails(res.results));
-      })
-      .catch((error) => {
-        dispatch(setError({ message: 'Ocurrió un error', error }));
-      });
+    dispatch(fetchPokemons());
   }, []);
 
   return (

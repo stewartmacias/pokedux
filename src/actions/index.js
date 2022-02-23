@@ -1,6 +1,4 @@
-import { SET_POKEMONS, SET_ERROR, CLEAR_ERROR } from './types';
-import { getPokemons } from '../api/getPokemons';
-import axios from 'axios';
+import { SET_POKEMONS, SET_ERROR, CLEAR_ERROR, FETCH_POKEMONS } from './types';
 
 export const setPokemons = (payload) => ({
   type: SET_POKEMONS,
@@ -17,19 +15,6 @@ export const clearError = (payload) => ({
   payload,
 });
 
-export const setPokemonsWithDetails =
-  (pokemons = []) =>
-  async (dispatch) => {
-    try {
-      const pokemonsWithDetails = await Promise.all(
-        pokemons.map(async (pokemon) => {
-          const pokemonDetail = await axios.get(pokemon.url);
-          return pokemonDetail.data;
-        })
-      );
-
-      dispatch(setPokemons(pokemonsWithDetails));
-    } catch (error) {
-      dispatch(setError({ message: 'Oops! Something went wrong.', error }));
-    }
-  };
+export const fetchPokemons = () => ({
+    type: FETCH_POKEMONS,
+})

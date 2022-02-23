@@ -2,17 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import App from './containers/App';
 import { pokemonReducer } from './reducers/pokemon';
-import { logAction, reportError } from './middlewares';
 import './index.css';
+import pokemonSaga from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const composedEnhancers = composeAlt(applyMiddleware(thunk, logAction, reportError));
+const composedEnhancers = composeAlt( applyMiddleware(sagaMiddleware));
 
 const store = createStore(pokemonReducer, composedEnhancers);
+
+sagaMiddleware.run(pokemonSaga);
 
 ReactDOM.render(
   <Provider store={store}>
