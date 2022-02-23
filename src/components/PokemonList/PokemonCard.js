@@ -9,7 +9,7 @@ import './styles.css';
 const PokemonCard = ({ pokemon }) => {
     const dispatch = useDispatch();
     const handleFavorite = () => {
-        dispatch(setFavorite(pokemon));
+        dispatch(setFavorite({ pokemonId: pokemon.id }));
     }
 
     const color = pokemon.favorite ? FAV_COLOR : DEFAULT_COLOR;
