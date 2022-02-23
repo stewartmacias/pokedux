@@ -16,8 +16,4 @@ const PokemonList = ({ pokemons }) => {
     )
 }
 
-PokemonList.defaultProps = {
-    pokemons: [],
-}
-
 export default PokemonList;
